@@ -1,0 +1,22 @@
+--create and use the DB
+create database office;
+user office;
+
+-Create Employee table
+create table employee (id int, name string, dept string, yoj int, salary int)
+row format delimited fields terminated by "," tblproperties ("skip.header.line.count"="1");
+
+-- load data into table employee
+load data local inpath '/root/empData.csv' into table employee;
+
+- run the quireies in employee table
+select * from employee;
+select count(*) employee;
+
+-- exports to HDFS directory
+insert overwrite directory '/user/mahesh/hiveOutput' row format delimited fields terminated by ','
+select * from emp.employee;
+
+-- exports to LOCAL directory
+insert overwrite directory '/root/hiveOutput' row format delimited fields terminated by ','
+select * from emp.employee;
